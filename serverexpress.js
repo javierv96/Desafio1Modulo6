@@ -21,8 +21,7 @@ app.get('/abracadabra/usuarios', (req, res) => {
 
 // Middleware para verificar si el usuario existe
 app.use('/abracadabra/juego/:usuario', (req, res, next) => {
-    const usuario = req.params.usuario;
-    if (usuarios.includes(usuario)) {
+    if (usuarios.includes(req.params.usuario)) {
         next(); // pasa al app.get
     } else {
         // Envía una imagen si el usuario no existe
