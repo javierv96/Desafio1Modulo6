@@ -21,12 +21,7 @@ app.get('/abracadabra/usuarios', (req, res) => {
 
 // Middleware para verificar si el usuario existe
 app.use('/abracadabra/juego/:usuario', (req, res, next) => {
-    if (usuarios.includes(req.params.usuario)) {
-        next(); // pasa al app.get
-    } else {
-        // Envía una imagen si el usuario no existe
-        res.sendFile(path.join(__dirname, 'assets', 'who.jpeg'));
-    }
+    usuarios.includes(req.params.usuario) ? next() : res.redirect("/who.jpeg")
 });
 
 //si el usuario existe redirecciona al index.html
