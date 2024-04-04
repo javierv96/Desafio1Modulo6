@@ -11,11 +11,6 @@ app.listen(PORT, () => {
 // Middleware para traer archivos estáticos desde la carpeta 'assets'
 app.use(express.static(path.join(__dirname, 'assets')));
 
-// Ruta raiz que redirige al archivo index.html
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-});
-
 // Lista de usuarios existentes
 const usuarios = ['Juan', 'Jocelyn', 'Astrid', 'Maria', 'Ignacia', 'Javier', 'Brian'];
 
@@ -35,9 +30,9 @@ app.use('/abracadabra/juego/:usuario', (req, res, next) => {
     }
 });
 
-// Ruta de bienvenida al juego para un usuario existente
+//si el usuario existe redirecciona al index.html
 app.get('/abracadabra/juego/:usuario', (req, res) => {
-    res.send('¡Bienvenido al juego!');
+    res.sendFile(__dirname + '/index.html')
 });
 
 // Ruta para mostrar una imagen dependiendo de un número aleatorio
